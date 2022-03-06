@@ -193,13 +193,21 @@ class EventController extends Controller {
   }
 
        /**
-     * @OA\Put(
+     * @OA\Post(
      *   path="/api/event/{id}",
      *   tags={"Event"},
      *   summary="Update  Event By Id",
      *   description="Update Event By Id",
      *   operationId="update",
      *   security={{"bearer":{}}},
+     *   @OA\Parameter(
+     *         name="_method",
+     *         in="query",
+     *         description="for replace method POST into PUT",
+     *         required=true,
+     *         @OA\Schema(type="string"),
+     *         @OA\Examples(example="string", value="PUT",summary="value query string")
+     *   ),
      *    @OA\Parameter(
      *         description="Parameter with id",
      *         in="path",
@@ -275,10 +283,10 @@ class EventController extends Controller {
      * )
      */
 
-  public function update($id, Request $request){
+  public function update(Request $request, $id){
 
     $event = $this->event->find($id);
-    
+
     $event->assign()->fromRequest($request);
 
     $validation = $event->validate()->onCreateAndUpdate();

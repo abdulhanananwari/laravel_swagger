@@ -38,7 +38,7 @@ class FromRequest
             $img->stream();
     
             $image->move(public_path().'/images/', $fileName);
-            $this->event->image = $fileName;
+            $this->event->image = '/images/'.$fileName;
         }
 
         if($request->get('date')){

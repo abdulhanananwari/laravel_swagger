@@ -14,7 +14,7 @@
     },
     "servers": [
         {
-            "url": "http://localhost:20002",
+            "url": "http://localhost:10001",
             "description": "Demo API Server"
         }
     ],
@@ -245,7 +245,7 @@
                     }
                 ]
             },
-            "put": {
+            "post": {
                 "tags": [
                     "Event"
                 ],
@@ -253,6 +253,21 @@
                 "description": "Update Event By Id",
                 "operationId": "update",
                 "parameters": [
+                    {
+                        "name": "_method",
+                        "in": "query",
+                        "description": "for replace method POST into PUT",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "string": {
+                                "summary": "value query string",
+                                "value": "PUT"
+                            }
+                        }
+                    },
                     {
                         "name": "id",
                         "in": "path",
